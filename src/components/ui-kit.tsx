@@ -1,4 +1,11 @@
-import { useState, type ReactNode } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  useId,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { AlertCircle, Check, Copy, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { timeStamp } from "@/lib/ai";
@@ -55,9 +62,35 @@ export function Panel({
 }
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {
+  const id = useId();
+  const child = (isValidElement(children) ? children : null) as ReactElement<{
+    id?: string;
+  }> | null;
+  const isNativeControl =
+    child !== null &&
+    typeof child.type === "string" &&
+    ["input", "textarea", "select"].includes(child.type);
+
+  if (child && isNativeControl) {
+    const controlId = child.props.id ?? `field-${id.replace(/:/g, "")}`;
+    return (
+      <div className="mt-4">
+        <label htmlFor={controlId} className="mb-1.5 block text-xs font-semibold">
+          {label}
+        </label>
+        {cloneElement(child, { id: controlId })}
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-4">
-      <label className="mb-1.5 block text-xs font-semibold">{label}</label>
+    <div className="mt-4" role="group" aria-labelledby={`label-${id.replace(/:/g, "")}`}>
+      <span
+        id={`label-${id.replace(/:/g, "")}`}
+        className="mb-1.5 block text-xs font-semibold"
+      >
+        {label}
+      </span>
       {children}
     </div>
   );

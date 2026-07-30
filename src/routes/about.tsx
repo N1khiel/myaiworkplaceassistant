@@ -76,19 +76,24 @@ function AboutPage() {
         sub="Deskline bundles four focused AI tools into one dashboard so the repetitive parts of the workday — drafting, planning, summarising, asking — take minutes instead of an afternoon."
       />
 
-      <section className="mt-7 grid gap-5 sm:grid-cols-2">
-        {PRINCIPLES.map((p) => (
-          <div
-            key={p.title}
-            className="rounded-2xl border border-border bg-card p-6 shadow-card"
-          >
-            <div className="gradient-tint flex size-11 items-center justify-center rounded-xl border border-primary-tint-border text-primary-dark">
-              <p.icon className="size-5" />
+      <section className="mt-8">
+        <h2 className="font-display text-2xl font-bold">What we stand by</h2>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+          {PRINCIPLES.map((p) => (
+            <div
+              key={p.title}
+              className="rounded-2xl border border-border bg-card p-6 shadow-card"
+            >
+              <div className="gradient-tint flex size-11 items-center justify-center rounded-xl border border-primary-tint-border text-primary-dark">
+                <p.icon className="size-5" />
+              </div>
+              <h3 className="mt-4 font-display text-base font-bold">{p.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                {p.body}
+              </p>
             </div>
-            <h3 className="mt-4 font-display text-base font-bold">{p.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <section className="gradient-ink mt-8 rounded-3xl p-7 text-ink-foreground sm:p-9">

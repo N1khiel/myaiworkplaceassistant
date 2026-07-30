@@ -181,8 +181,10 @@ function Dashboard() {
       </section>
 
       {/* Principles */}
-      <section className="mt-6 grid gap-5 sm:grid-cols-2">
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+      <section className="mt-10">
+        <h2 className="font-display text-2xl font-bold">How Deskline behaves</h2>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
           <ShieldCheck className="size-5 text-accent" />
           <h3 className="mt-3 font-display text-base font-bold">Nothing is stored</h3>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
@@ -190,13 +192,14 @@ function Dashboard() {
             transcripts, no drafts, no history kept on a server.
           </p>
         </div>
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-          <Zap className="size-5 text-primary" />
-          <h3 className="mt-3 font-display text-base font-bold">Drafts, not decisions</h3>
-          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Deskline never sends, books, or publishes anything. Every output is a starting
-            point you edit and approve.
-          </p>
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+            <Zap className="size-5 text-primary" />
+            <h3 className="mt-3 font-display text-base font-bold">Drafts, not decisions</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              Deskline never sends, books, or publishes anything. Every output is a starting
+              point you edit and approve.
+            </p>
+          </div>
         </div>
       </section>
     </AppShell>
