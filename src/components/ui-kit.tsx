@@ -78,7 +78,7 @@ export function Field({ label, children }: { label: string; children: ReactNode 
         <label htmlFor={controlId} className="mb-1.5 block text-xs font-semibold">
           {label}
         </label>
-        {cloneElement(child as ReactElement<{ id?: string }>, { id: controlId })}
+        {cloneElement(child, { id: controlId })}
       </div>
     );
   }
