@@ -17,7 +17,28 @@ import {
 import { callAI } from "@/lib/ai";
 import { bumpUsage } from "@/lib/usage";
 
+type Tone = "Formal" | "Friendly" | "Persuasive";
+
+type EmailSearch = {
+  recipient?: string;
+  purpose?: string;
+  points?: string;
+  tone?: Tone;
+};
+
 export const Route = createFileRoute("/email")({
+  validateSearch: (search: Record<string, unknown>): EmailSearch => {
+    const tone = search.tone;
+    return {
+      recipient: typeof search.recipient === "string" ? search.recipient : undefined,
+      purpose: typeof search.purpose === "string" ? search.purpose : undefined,
+      points: typeof search.points === "string" ? search.points : undefined,
+      tone:
+        tone === "Formal" || tone === "Friendly" || tone === "Persuasive"
+          ? tone
+          : undefined,
+    };
+  },
   head: () => ({
     meta: [
       { title: "Smart Email Generator — Deskline" },
