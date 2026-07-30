@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://myaiworkplaceassistant.lovable.app/sitemap.xml
