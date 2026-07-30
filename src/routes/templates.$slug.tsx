@@ -102,7 +102,7 @@ function TemplateDetail() {
           <section className="rounded-2xl border border-border bg-card p-6 shadow-card">
             <h2 className="font-display text-lg font-bold">The structure that works</h2>
             <ol className="mt-4 space-y-3">
-              {template.structure.map((step, i) => (
+              {template.structure.map((step: string, i: number) => (
                 <li key={step} className="flex gap-3 text-sm leading-relaxed">
                   <span className="mono-label mt-0.5 shrink-0 text-primary">
                     {String(i + 1).padStart(2, "0")}
@@ -118,7 +118,7 @@ function TemplateDetail() {
               <Lightbulb className="size-4 text-accent" /> Things that make it land
             </h2>
             <ul className="mt-4 space-y-3">
-              {template.tips.map((tip) => (
+              {template.tips.map((tip: string) => (
                 <li key={tip} className="flex gap-2.5 text-sm leading-relaxed">
                   <Check className="mt-0.5 size-4 shrink-0 text-primary" />
                   <span className="text-muted-foreground">{tip}</span>
