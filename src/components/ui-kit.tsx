@@ -55,9 +55,34 @@ export function Panel({
 }
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {
+  const id = useId();
+  const child = isValidElement(children) ? children : null;
+  const isNativeControl =
+    child !== null &&
+    typeof child.type === "string" &&
+    ["input", "textarea", "select"].includes(child.type);
+
+  if (isNativeControl && child) {
+    const controlId =
+      (child.props as { id?: string }).id ?? `field-${id.replace(/:/g, "")}`;
+    return (
+      <div className="mt-4">
+        <label htmlFor={controlId} className="mb-1.5 block text-xs font-semibold">
+          {label}
+        </label>
+        {cloneElement(child as ReactElement<{ id?: string }>, { id: controlId })}
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-4">
-      <label className="mb-1.5 block text-xs font-semibold">{label}</label>
+    <div className="mt-4" role="group" aria-labelledby={`label-${id.replace(/:/g, "")}`}>
+      <span
+        id={`label-${id.replace(/:/g, "")}`}
+        className="mb-1.5 block text-xs font-semibold"
+      >
+        {label}
+      </span>
       {children}
     </div>
   );
