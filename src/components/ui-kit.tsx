@@ -63,15 +63,16 @@ export function Panel({
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {
   const id = useId();
-  const child = isValidElement(children) ? children : null;
+  const child = (isValidElement(children) ? children : null) as ReactElement<{
+    id?: string;
+  }> | null;
   const isNativeControl =
     child !== null &&
     typeof child.type === "string" &&
     ["input", "textarea", "select"].includes(child.type);
 
-  if (isNativeControl && child) {
-    const controlId =
-      (child.props as { id?: string }).id ?? `field-${id.replace(/:/g, "")}`;
+  if (child && isNativeControl) {
+    const controlId = child.props.id ?? `field-${id.replace(/:/g, "")}`;
     return (
       <div className="mt-4">
         <label htmlFor={controlId} className="mb-1.5 block text-xs font-semibold">
