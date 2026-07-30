@@ -1,4 +1,12 @@
-import { LayoutDashboard, MessageSquare, Mail, ListChecks, Search, Info } from "lucide-react";
+import {
+  LayoutDashboard,
+  MessageSquare,
+  Mail,
+  ListChecks,
+  Search,
+  Info,
+  BookOpen,
+} from "lucide-react";
 
 export const FEATURES = [
   {
@@ -46,4 +54,7 @@ export const NAV_OVERVIEW = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
 ] as const;
 
-export const NAV_MORE = [{ to: "/about", label: "About", icon: Info }] as const;
+export const NAV_MORE = [
+  { to: "/templates", label: "Email Templates", icon: BookOpen },
+  { to: "/about", label: "About", icon: Info },
+] as const;
