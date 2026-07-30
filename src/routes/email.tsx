@@ -59,8 +59,6 @@ export const Route = createFileRoute("/email")({
   component: EmailPage,
 });
 
-type Tone = "Formal" | "Friendly" | "Persuasive";
-
 const toneGuides: Record<Tone, string> = {
   Formal:
     "Formal: professional register, no contractions, precise and courteous, suitable for senior stakeholders or external contacts.",
@@ -71,10 +69,11 @@ const toneGuides: Record<Tone, string> = {
 };
 
 function EmailPage() {
-  const [recipient, setRecipient] = useState("");
-  const [purpose, setPurpose] = useState("");
-  const [points, setPoints] = useState("");
-  const [tone, setTone] = useState<Tone>("Formal");
+  const preset = Route.useSearch();
+  const [recipient, setRecipient] = useState(preset.recipient ?? "");
+  const [purpose, setPurpose] = useState(preset.purpose ?? "");
+  const [points, setPoints] = useState(preset.points ?? "");
+  const [tone, setTone] = useState<Tone>(preset.tone ?? "Formal");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ text: string; tone: Tone } | null>(null);
