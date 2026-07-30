@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { EMAIL_TEMPLATES } from "@/lib/templates";
 
 const BASE_URL = "https://myaiworkplaceassistant.lovable.app";
 
@@ -20,6 +21,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/planner", changefreq: "monthly", priority: "0.8" },
           { path: "/research", changefreq: "monthly", priority: "0.8" },
           { path: "/chat", changefreq: "monthly", priority: "0.8" },
+          { path: "/templates", changefreq: "monthly", priority: "0.9" },
+          ...EMAIL_TEMPLATES.map((t) => ({
+            path: `/templates/${t.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+          })),
           { path: "/about", changefreq: "yearly", priority: "0.5" },
         ];
 

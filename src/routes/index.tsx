@@ -89,10 +89,10 @@ function Dashboard() {
                 Draft an email <ArrowRight className="size-4" />
               </Link>
               <Link
-                to="/chat"
+                to="/templates"
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-foreground/20 px-5 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
               >
-                Open the chatbot
+                Browse email templates
               </Link>
             </div>
           </div>

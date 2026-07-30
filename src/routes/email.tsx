@@ -17,7 +17,28 @@ import {
 import { callAI } from "@/lib/ai";
 import { bumpUsage } from "@/lib/usage";
 
+type Tone = "Formal" | "Friendly" | "Persuasive";
+
+type EmailSearch = {
+  recipient?: string;
+  purpose?: string;
+  points?: string;
+  tone?: Tone;
+};
+
 export const Route = createFileRoute("/email")({
+  validateSearch: (search: Record<string, unknown>): EmailSearch => {
+    const tone = search.tone;
+    return {
+      recipient: typeof search.recipient === "string" ? search.recipient : undefined,
+      purpose: typeof search.purpose === "string" ? search.purpose : undefined,
+      points: typeof search.points === "string" ? search.points : undefined,
+      tone:
+        tone === "Formal" || tone === "Friendly" || tone === "Persuasive"
+          ? tone
+          : undefined,
+    };
+  },
   head: () => ({
     meta: [
       { title: "Smart Email Generator — Deskline" },
@@ -38,8 +59,6 @@ export const Route = createFileRoute("/email")({
   component: EmailPage,
 });
 
-type Tone = "Formal" | "Friendly" | "Persuasive";
-
 const toneGuides: Record<Tone, string> = {
   Formal:
     "Formal: professional register, no contractions, precise and courteous, suitable for senior stakeholders or external contacts.",
@@ -50,10 +69,11 @@ const toneGuides: Record<Tone, string> = {
 };
 
 function EmailPage() {
-  const [recipient, setRecipient] = useState("");
-  const [purpose, setPurpose] = useState("");
-  const [points, setPoints] = useState("");
-  const [tone, setTone] = useState<Tone>("Formal");
+  const preset = Route.useSearch();
+  const [recipient, setRecipient] = useState(preset.recipient ?? "");
+  const [purpose, setPurpose] = useState(preset.purpose ?? "");
+  const [points, setPoints] = useState(preset.points ?? "");
+  const [tone, setTone] = useState<Tone>(preset.tone ?? "Formal");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ text: string; tone: Tone } | null>(null);
