@@ -135,7 +135,7 @@ function Dashboard() {
       <section className="mt-10">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-2xl font-bold">The toolkit</h2>
-          <span className="mono-label text-muted-foreground">04 tools</span>
+          <span className="mono-label text-muted-foreground">05 tools</span>
         </div>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           {FEATURES.map((f) => (
