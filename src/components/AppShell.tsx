@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { FEATURES, NAV_MORE, NAV_OVERVIEW } from "@/lib/features";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 function NavLink({
@@ -96,7 +97,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           ))}
         </nav>
 
-        <div className="mt-auto rounded-xl border border-ink-foreground/10 bg-ink-foreground/5 p-3.5 text-xs leading-relaxed text-ink-muted">
+        <div className="mt-auto pt-5">
+          <ThemeToggle className="w-full justify-center" />
+        </div>
+
+        <div className="mt-3 rounded-xl border border-ink-foreground/10 bg-ink-foreground/5 p-3.5 text-xs leading-relaxed text-ink-muted">
           <span className="font-semibold text-ink-foreground">Responsible AI:</span> outputs
           are AI-generated drafts. Review before sending, sharing, or acting on them. Avoid
           entering confidential data.
@@ -113,7 +118,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Menu className="size-5" />
           </button>
           <span className="font-display font-bold">Deskline</span>
-          <Sparkles className="size-5 text-primary" />
+          <ThemeToggle className="px-2.5 py-1.5 [&>span]:hidden" />
         </header>
 
         <main className="flex-1 px-5 pt-6 pb-14 sm:px-8 lg:px-10 lg:pt-9">{children}</main>

@@ -6,6 +6,7 @@ import {
   Search,
   Info,
   BookOpen,
+  Boxes,
 } from "lucide-react";
 
 export const FEATURES = [
@@ -47,6 +48,16 @@ export const FEATURES = [
     icon: Search,
     tagline:
       "Paste a topic or article and get a summary with insights and recommendations.",
+  },
+  {
+    key: "materials",
+    to: "/materials",
+    label: "Material Sourcer",
+    index: "05",
+    kicker: "Engineering",
+    icon: Boxes,
+    tagline:
+      "Search a steel, alloy or polymer grade and get composition, properties, standards and sourcing notes.",
   },
 ] as const;
 
